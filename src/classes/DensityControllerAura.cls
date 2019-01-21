@@ -24,15 +24,15 @@ public with sharing class DensityControllerAura {
     public static String getDensityFromUIApi() {
 
         // Session Id retrieved from Custom VisualForce page
-        String sessionId = Page.MySessionIdVFPage.getContent().toString();
-        String density = '';
-
-        HttpRequest httpRequest = new HttpRequest();
-        httpRequest.setMethod('GET');
-        httpRequest.setHeader('Authorization', 'Bearer ' + sessionId);
-        httpRequest.setEndpoint(Url.getSalesforceBaseUrl().toExternalForm() + '/services/data/v44.0/ui-api/themes/active');
+        String sessionId = Test.isRunningTest() ? null : Page.MySessionIdVFPage.getContent().toString();
+        String density = ''; 
 
         try {
+            HttpRequest httpRequest = new HttpRequest();
+            httpRequest.setMethod('GET');
+            httpRequest.setHeader('Authorization', 'Bearer ' + sessionId);
+            httpRequest.setEndpoint(Url.getSalesforceBaseUrl().toExternalForm() + '/services/data/v44.0/ui-api/themes/active');
+
             Http http = new Http();
             HttpResponse httpResponse = http.send(httpRequest);
             if (httpResponse.getStatusCode() == 200) {
