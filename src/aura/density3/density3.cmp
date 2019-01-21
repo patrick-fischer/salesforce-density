@@ -1,0 +1,132 @@
+<aura:component implements="flexipage:availableForAllPageTypes" controller="DensityControllerAura" description="density3">
+
+    <!-- PUBLIC ATTRIBUTES -->
+    <aura:attribute type="String" name="recordId" default="0011n00001jgTNm"/>
+
+    <!-- PRIVATE ATTRIBUTES -->
+    <aura:attribute type="String" name="density" default="blank"/>
+
+    <!-- HANDLER -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <!-- BODY -->
+    <div class="slds-box slds-theme_default" >
+
+        <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-size_1-of-1">
+                <div class="slds-text-heading_medium">Current Density: {!v.density}</div>
+            </div>
+
+            <div class="slds-col slds-size_1-of-3 slds-box">
+                <div class="slds-text-heading_medium">Custom <b>Comfy</b> Layout (Default)</div>
+
+                <div class="slds-form">
+
+                    <!-- READ-ONLY Field -->
+                    <div class="slds-form-element">
+                        <span class="slds-form-element__label">Custom Read Field</span>
+                        <div class="slds-form-element__control">
+                            <span class="slds-form-element__static">Read Only Value</span>
+                        </div>
+                    </div>
+
+                    <!-- EDIT Field -->
+                    <lightning:input name="input1" label="Custom Edit Field" value="Editable Value" />
+
+                    <!-- Record View Form -->
+                    <lightning:recordViewForm recordId="{!v.recordId}" objectApiName="Account" >
+                        <lightning:outputField fieldName="Name" />
+                        <lightning:outputField fieldName="Type" />
+                        <lightning:outputField fieldName="Website" />
+                    </lightning:recordViewForm>
+
+                    <!-- Record Edit Form -->
+                    <lightning:recordEditForm recordId="{!v.recordId}" objectApiName="Account">
+                        <lightning:messages />
+                        <lightning:inputField fieldName="Name" />
+                        <lightning:inputField fieldName="Type" />
+                        <lightning:inputField fieldName="Website" />
+                        <lightning:button class="slds-m-top_small" variant="brand" type="submit" name="update" label="Update" />
+                    </lightning:recordEditForm>
+
+                </div>
+            </div>
+
+            <div class="slds-col slds-size_1-of-3 slds-box">
+                <div class="slds-text-heading_medium">Custom <b>Compact</b> Layout</div>
+
+                <div class="slds-form_horizontal">
+
+                    <!-- READ-ONLY Field -->
+                    <div class="slds-form-element">
+                        <div class="slds-form-element__label">
+                            <span class="test-id__field-label">Input Label</span>
+                        </div>
+                        <div class="slds-form-element__control">
+                            <span class="slds-form-element__static">Read Only</span>
+                        </div>
+                    </div>
+
+                    <!-- EDIT Field -->
+                    <lightning:input name="input1" label="Enter some text"/>
+
+                    <!-- Record View Form -->
+                    <lightning:recordViewForm recordId="{!v.recordId}" objectApiName="Account" >
+                        <lightning:outputField fieldName="Name" />
+                        <lightning:outputField fieldName="Type" />
+                        <lightning:outputField fieldName="Website" />
+                    </lightning:recordViewForm>
+
+                    <!-- Record Edit Form -->
+                    <lightning:recordEditForm recordId="{!v.recordId}" objectApiName="Account">
+                        <lightning:messages />
+                        <lightning:inputField fieldName="Name" />
+                        <lightning:inputField fieldName="Type" />
+                        <lightning:inputField fieldName="Website" />
+                        <lightning:button class="slds-m-top_small" variant="brand" type="submit" name="update" label="Update" />
+                    </lightning:recordEditForm>
+
+                </div>
+            </div>
+
+            <div class="slds-col slds-size_1-of-3 slds-box">
+                <div class="slds-text-heading_medium">Density <b>Responsive</b> Column</div>
+
+                <div class="{! if(v.density eq 'ViewOne', 'slds-form', 'slds-form_horizontal')}">
+
+                    <!-- READ-ONLY Field -->
+                    <div class="slds-form-element">
+                        <div class="slds-form-element__label">
+                            <span class="test-id__field-label">Input Label</span>
+                        </div>
+                        <div class="slds-form-element__control">
+                            <span class="slds-form-element__static ">Read Only</span>
+                        </div>
+                    </div>
+
+                    <!-- EDIT Field -->
+                    <lightning:input name="input1" label="Enter some text"/>
+
+                    <!-- Record View Form -->
+                    <lightning:recordViewForm recordId="{!v.recordId}" objectApiName="Account" >
+                        <lightning:outputField fieldName="Name" />
+                        <lightning:outputField fieldName="Type" />
+                        <lightning:outputField fieldName="Website" />
+                    </lightning:recordViewForm>
+
+                    <!-- Record Edit Form -->
+                    <lightning:recordEditForm recordId="{!v.recordId}" objectApiName="Account">
+                        <lightning:messages />
+                        <lightning:inputField fieldName="Name" />
+                        <lightning:inputField fieldName="Type" />
+                        <lightning:inputField fieldName="Website" />
+                        <lightning:button class="slds-m-top_small" variant="brand" type="submit" name="update" label="Update" />
+                    </lightning:recordEditForm>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</aura:component>

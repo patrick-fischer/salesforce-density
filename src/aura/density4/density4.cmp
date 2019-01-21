@@ -1,0 +1,71 @@
+<aura:component implements="flexipage:availableForAllPageTypes" controller="DensityControllerAura" description="density4">
+
+    <!-- PUBLIC ATTRIBUTES -->
+    <aura:attribute type="String" name="recordId" default="0011n00001jgTNm"/>
+
+    <!-- PRIVATE ATTRIBUTES -->
+    <aura:attribute type="String" name="density" default="blank"/>
+
+    <!-- HANDLER -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <!-- BODY -->
+    <div class="slds-box slds-theme_default" >
+        <div class="slds-grid slds-wrap slds-grid_align-center">
+            <div class="slds-col slds-size_1-of-2">
+
+                <div class="slds-text-heading_medium slds-p-bottom_medium">
+                    Density <b>Responsive</b> Form - Current Density: {!v.density}
+                </div>
+
+                <div class="{! if(v.density eq 'ViewOne', 'slds-form', 'slds-form_horizontal')}">
+
+                    <!-- READ-ONLY Field -->
+                    <div class="slds-form-element">
+                        <div class="slds-form-element__label">
+                            <span class="test-id__field-label">Input Label</span>
+                        </div>
+                        <div class="slds-form-element__control">
+                            <span class="slds-form-element__static ">Read Only</span>
+                        </div>
+                    </div>
+
+                    <!-- OUTPUT Field -->
+                    <lightning:input name="input1" label="Enter some text"/>
+
+                    <!-- Record View Form -->
+                    <lightning:recordViewForm recordId="{!v.recordId}" objectApiName="Account" >
+                        <lightning:outputField fieldName="Name" />
+                        <lightning:outputField fieldName="Type" />
+                        <lightning:outputField fieldName="Website" />
+                    </lightning:recordViewForm>
+
+                    <!-- Record Edit Form -->
+                    <lightning:recordEditForm recordId="{!v.recordId}" objectApiName="Account">
+                        <lightning:messages />
+                        <lightning:inputField fieldName="Name" />
+                        <lightning:inputField fieldName="Type" />
+                        <lightning:inputField fieldName="Website" />
+                        <lightning:button class="slds-m-top_small" variant="brand" type="submit" name="update" label="Update" />
+                    </lightning:recordEditForm>
+
+                </div>
+            </div>
+
+            <aura:if isTrue="{!v.density eq 'ViewTwo'}">
+                <div class="slds-col slds-size_1-of-2">
+                    <img src="https://visme.co/blog/wp-content/uploads/2015/10/3.gif"/>
+                </div>
+            </aura:if>
+
+        </div>
+
+        <aura:if isTrue="{!v.density eq 'ViewOne'}">
+            <div class="slds-text-align_center">
+                <img src="https://visme.co/blog/wp-content/uploads/2015/10/3.gif"/>
+                <img src="https://i0.wp.com/galvintech.com/wp-content/uploads/2017/04/team-dashboard.png?ssl=1" style="width: 70vw;"/>
+            </div>
+        </aura:if>
+
+    </div>
+</aura:component>
